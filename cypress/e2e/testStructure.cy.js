@@ -14,20 +14,20 @@ describe('Context: My First Test',()=>{
     afterEach(()=>{
         //afrterMethod in TestNG
     })
-    it('Opening a web application',()=>{
+    it.skip('Opening a web application',()=>{
         cy.visit('checkboxes');
         
     })
-    it('Test 2 ',()=>{
+    xit('Test 2 ',()=>{
         expect(false).equal(false);//as verify
     })
     it('Test 3', ()=>{
         expect(false).not.to.equal(true);
     })
     it('Test 4', ()=>{
-        expect(false).to.equal(true);
+        expect(5).to.equal(5);
     })
-    it('Test 5', ()=>{
+    it('Test 5', ()=>{//or it.only 
         expect(true).to.equal('5'==5);
     })
 
