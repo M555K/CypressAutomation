@@ -18,5 +18,17 @@ describe('Context: My First Test',()=>{
         cy.visit('checkboxes');
         
     })
+    it('Test 2 ',()=>{
+        expect(false).equal(false);//as verify
+    })
+    it('Test 3', ()=>{
+        expect(false).not.to.equal(true);
+    })
+    it('Test 4', ()=>{
+        expect(false).to.equal(true);
+    })
+    it('Test 5', ()=>{
+        expect(true).to.equal('5'==5);
+    })
 
 })
