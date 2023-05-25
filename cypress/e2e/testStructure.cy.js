@@ -14,10 +14,10 @@ describe('Context: My First Test', () => {
   afterEach(() => {
     // afrterMethod in TestNG
   });
-  it.skip('Opening a web application', () => {
+  it('Opening a web application', () => {
     cy.visit('checkboxes');
   });
-  xit('Test 2 ', () => {
+  it('Test 2 ', () => {
     expect(false).equal(false); // as verify
   });
   it('Test 3', () => {

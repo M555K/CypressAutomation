@@ -10,7 +10,7 @@ describe('Cypress WebTable Tests', { baseUrl: 'https://demoqa.com' }, () => {
     cy.visit('/webtables');
   });
 
-  it.skip('Check finding and editing a record', () => {
+  it('Check finding and editing a record', () => {
     // locate table boy - then navigate through this element to find Adlen, then update info with another person
     cy.get('.rt-tbody') // get my table body
       .contains('.rt-tr-group', 'Alden') // get me specific row, in our case row that contains Alden
@@ -27,7 +27,7 @@ describe('Cypress WebTable Tests', { baseUrl: 'https://demoqa.com' }, () => {
       });
   });
 
-  it.skip('Check finding and deleting a record', () => {
+  it('Check finding and deleting a record', () => {
     cy.get('.rt-tbody')
       .contains('.rt-tr-group', 'Alden')
       .then((row) => {
@@ -40,16 +40,16 @@ describe('Cypress WebTable Tests', { baseUrl: 'https://demoqa.com' }, () => {
     // no data found eleent is visible or not
     cy.get('.rt-noData').should('contain', 'No rows found').should('be.visible');
   });
-  it.skip('Search for different age group',()=>{
+  it('Search for different age group',()=>{
     // define age groups
     const ageGroup =[29,39,45,77];
     // for each age of group perform same test scenario
     cy.wrap(ageGroup).each((age)=>{
         cy.get('#searchBox').clear().type(age);
         //negative scenario
-        if(age=== 77){
+        if(age === 77){
         cy.get('.rt-tbody').find('.rt-tr-group').first().should('not.contain',age);
-        cy.get('.rt-tbody').should('contain','No rows found').should('be.visible');
+        cy.get('.rt-noData').should('contain','No rows found').should('be.visible');
         }else{
             //positive scenario
         //verify if that age exist, second number of records
@@ -59,7 +59,7 @@ describe('Cypress WebTable Tests', { baseUrl: 'https://demoqa.com' }, () => {
 
     })
   })
-  it.skip('Check adding a new record - Bad code practice',()=>{
+  it('Check adding a new record - Bad code practice',()=>{
     cy.get('#addNewRecordButton').click();
     cy.get('#firstName').type('Harvey');
     cy.get('#lastName').type('Specter');

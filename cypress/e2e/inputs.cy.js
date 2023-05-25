@@ -7,7 +7,7 @@ describe('Input Form Tests', () => {
     cy.visit('/registration_form');
   });
 
-  it.skip('Check Different Input Box fields and verify', () => {
+  it('Check Different Input Box fields and verify', () => {
     cy.get('input[name="firstname"]').type('Mike');
     cy.get('input[name="lastname"]').type('Braun');
     cy.get('input[name="username"]').type('believer');
@@ -24,7 +24,7 @@ describe('Input Form Tests', () => {
     cy.get('input[name="phone"]').type(phoneNumber);
     cy.get('input[name="birthday"]').type('01/05/1995');
   });
-  it.skip('Check different radio buttons actions', () => {
+  it('Check different radio buttons actions', () => {
     /**
      * radio is Jquery element , cy.wrap(radio) turns it to the cypress object so that i can use cypres functions
      * first() select first element
@@ -39,7 +39,7 @@ describe('Input Form Tests', () => {
         cy.wrap(radio).eq(2).should('not.be.checked');
       });
   });
-  it.skip('Check different checkbox actions', () => {
+  it('Check different checkbox actions', () => {
     cy.get('[type="checkbox"]').then((checkbox) => {
       cy.wrap(checkbox).eq(1).check().should('be.checked');
       // unchecked java
@@ -47,7 +47,7 @@ describe('Input Form Tests', () => {
       cy.wrap(checkbox).eq(2).should('have.value', 'javascript').check().should('be.checked');
     });
   });
-  it.skip('Check selection of a single choice from a select dropdown ', () => {
+  it('Check selection of a single choice from a select dropdown ', () => {
     // select one element
     cy.get('select[name="job_title"]').select('SDET');
     // assert that dropdown has corerect text after selecting
