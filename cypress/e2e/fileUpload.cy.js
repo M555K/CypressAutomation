@@ -21,6 +21,13 @@ describe('Input Form Tests', () => {
     });
   
     it('Check upload action', () => {
-     cy.get('input#file-upload').attachFile()
+      // locator to chose file button
+     cy.get('input#file-upload').attachFile('cypress.png');
+     // click on opload button
+     cy.get('#file-submit').click();
+     cy.get('#uploaded-files').then(()=>{
+      cy.contains('cypress.png').should('be.visible');
+     })
+
     });
 })
