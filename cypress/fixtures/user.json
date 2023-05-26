@@ -7,7 +7,8 @@
     "salary": "234000",
     "department" : "legal"
     },
-    "user2" : {
-
-    }
+    "user2": {
+        "username": "tomsmith",
+        "password": "SuperSecretPassword"
+      }
 }
