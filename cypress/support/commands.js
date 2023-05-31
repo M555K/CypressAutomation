@@ -25,8 +25,8 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import 'cypress-file-upload';
 
-Cypress.Commands.add('textExist',(text)=>{
-    cy.contains(text).should('exist')
-})
+Cypress.Commands.add('textExist', (text) => {
+  cy.contains(text).should('exist');
+});
 // when we are callint this function from another test class:
-//cy.textExists('parameter);
+// cy.textExists('parameter);

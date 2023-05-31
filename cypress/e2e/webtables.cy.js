@@ -40,26 +40,25 @@ describe('Cypress WebTable Tests', { baseUrl: 'https://demoqa.com' }, () => {
     // no data found eleent is visible or not
     cy.get('.rt-noData').should('contain', 'No rows found').should('be.visible');
   });
-  it('Search for different age group',()=>{
+  it('Search for different age group', () => {
     // define age groups
-    const ageGroup =[29,39,45,77];
+    const ageGroup = [29, 39, 45, 77];
     // for each age of group perform same test scenario
-    cy.wrap(ageGroup).each((age)=>{
-        cy.get('#searchBox').clear().type(age);
-        //negative scenario
-        if(age === 77){
-        cy.get('.rt-tbody').find('.rt-tr-group').first().should('not.contain',age);
-        cy.get('.rt-noData').should('contain','No rows found').should('be.visible');
-        }else{
-            //positive scenario
-        //verify if that age exist, second number of records
-        cy.get('.rt-tbody').find('.rt-tr-group').first().should('contain',age);
-        cy.get('.rt-tbody').contains('.rt-tr-group',age).should('have.length',1);
-        }
-
-    })
-  })
-  it('Check adding a new record - Bad code practice',()=>{
+    cy.wrap(ageGroup).each((age) => {
+      cy.get('#searchBox').clear().type(age);
+      // negative scenario
+      if (age === 77) {
+        cy.get('.rt-tbody').find('.rt-tr-group').first().should('not.contain', age);
+        cy.get('.rt-noData').should('contain', 'No rows found').should('be.visible');
+      } else {
+        // positive scenario
+        // verify if that age exist, second number of records
+        cy.get('.rt-tbody').find('.rt-tr-group').first().should('contain', age);
+        cy.get('.rt-tbody').contains('.rt-tr-group', age).should('have.length', 1);
+      }
+    });
+  });
+  it('Check adding a new record - Bad code practice', () => {
     cy.get('#addNewRecordButton').click();
     cy.get('#firstName').type('Harvey');
     cy.get('#lastName').type('Specter');
@@ -71,7 +70,7 @@ describe('Cypress WebTable Tests', { baseUrl: 'https://demoqa.com' }, () => {
     // assert that new record is added
 
     cy.get('.rt-tbody') // get my table body
-      .contains('.rt-tr-group', 'Harvey') 
+      .contains('.rt-tr-group', 'Harvey')
       .then((row) => {
         cy.wrap(row).find('.rt-td').eq(0).should('contain', 'Harvey');
         cy.wrap(row).find('.rt-td').eq(1).should('contain', 'Specter');
@@ -80,29 +79,27 @@ describe('Cypress WebTable Tests', { baseUrl: 'https://demoqa.com' }, () => {
         cy.wrap(row).find('.rt-td').eq(4).should('contain', '234000');
         cy.wrap(row).find('.rt-td').eq(5).should('contain', 'legal');
       });
-  })
-  it('Adding a new record - Better practice',()=>{
+  });
+  it('Adding a new record - Better practice', () => {
     // click on add button
     cy.get('#addNewRecordButton').click();
-    cy.fixture('user').then((user)=>{
-        const columnNames = Object.keys(user.user1);// goes to fixture folder and gets user1 object and stores into columNames Array
-        const userData = Object.values(user.user1);
-        cy.wrap(columnNames).each((columnName,index)=>{
-           // cy.log(columName);
-           // cy.log(userData[index]);
-           cy.get(`#${columnName}`).type(`${userData[index]}`);
-        })
-        cy.get('#submit').click();
-        // assert that new recird is added
-        cy.get('.rt-tbody') 
-      .contains('.rt-tr-group', userData[0]) 
-      .then((row) => {
-        cy.wrap(userData).each((value,index)=>{
-            cy.wrap(row).find('.rt-td').eq(index).should('contain', value);
-          
-        })
-    
+    cy.fixture('user').then((user) => {
+      const columnNames = Object.keys(user.user1); // goes to fixture folder and gets user1 object and stores into columNames Array
+      const userData = Object.values(user.user1);
+      cy.wrap(columnNames).each((columnName, index) => {
+        // cy.log(columName);
+        // cy.log(userData[index]);
+        cy.get(`#${columnName}`).type(`${userData[index]}`);
       });
-    })
-  })
+      cy.get('#submit').click();
+      // assert that new recird is added
+      cy.get('.rt-tbody')
+        .contains('.rt-tr-group', userData[0])
+        .then((row) => {
+          cy.wrap(userData).each((value, index) => {
+            cy.wrap(row).find('.rt-td').eq(index).should('contain', value);
+          });
+        });
+    });
+  });
 });
